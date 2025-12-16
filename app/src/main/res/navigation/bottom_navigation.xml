@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/dashboardFragment">
+
+    <fragment
+        android:id="@+id/dashboardFragment"
+        android:name="com.example.sitanduapp.DashboardFragment"
+        android:label="Dashboard"
+        tools:layout="@layout/fragment_dashboard" />
+
+    <fragment
+        android:id="@+id/jadwalFragment"
+        android:name="com.example.sitanduapp.JadwalFragment"
+        android:label="Jadwal"
+        tools:layout="@layout/fragment_jadwal" />
+
+    <fragment
+        android:id="@+id/jtFragment"
+        android:name="com.example.sitanduapp.JtFragment"
+        android:label="Janji Temu"
+        tools:layout="@layout/fragment_jt" />
+
+    <fragment
+        android:id="@+id/ttdFragment"
+        android:name="com.example.sitanduapp.TtdFragment"
+        android:label="Tanda Tangan"
+        tools:layout="@layout/fragment_ttd" />
+
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.sitanduapp.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+
+</navigation>

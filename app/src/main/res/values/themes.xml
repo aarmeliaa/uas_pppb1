@@ -1,0 +1,65 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <style name="Base.Theme.SitanduApp" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorPrimary">#53AAA7</item>
+        <item name="colorOnPrimary">#FFFFFF</item>
+        <item name="colorPrimaryContainer">#B2DFDD</item>
+        <item name="colorOnPrimaryContainer">#00201F</item>
+
+        <item name="colorSecondary">#FFC107</item>
+        <item name="colorOnSecondary">#000000</item>
+        <item name="colorSecondaryContainer">#FFECB3</item>
+        <item name="colorOnSecondaryContainer">#3E2723</item>
+
+        <item name="colorTertiary">#6750A4</item>
+        <item name="colorOnTertiary">#FFFFFF</item>
+
+        <item name="colorError">#BA1A1A</item>
+        <item name="colorOnError">#FFFFFF</item>
+
+        <item name="colorSurface">#FFFFFF</item>
+        <item name="colorOnSurface">#212121</item>
+        <item name="colorSurfaceVariant">#F5F5F5</item>
+        <item name="colorOnSurfaceVariant">#757575</item>
+
+        <item name="colorOutline">#BDBDBD</item>
+        <item name="backgroundColor">#FAFAFA</item>
+        <item name="colorOnBackground">#212121</item>
+
+        <item name="shapeAppearanceSmallComponent">@style/ShapeAppearance.SitanduApp.SmallComponent</item>
+        <item name="shapeAppearanceMediumComponent">@style/ShapeAppearance.SitanduApp.MediumComponent</item>
+
+    </style>
+
+    <style name="Theme.SitanduApp" parent="Base.Theme.SitanduApp" />
+
+    <style name="ShapeAppearance.SitanduApp.SmallComponent" parent="ShapeAppearance.Material3.SmallComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">8dp</item>
+    </style>
+
+    <style name="ShapeAppearance.SitanduApp.MediumComponent" parent="ShapeAppearance.Material3.MediumComponent">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">12dp</item>
+    </style>
+
+    <style name="Widget.SitanduApp.BottomNavigationView" parent="Widget.Material3.BottomNavigationView">
+        <item name="itemIconTint">@drawable/bottom_nav_color</item>
+        <item name="itemTextColor">@drawable/bottom_nav_color</item>
+        <item name="itemActiveIndicatorStyle">@style/Widget.SitanduApp.BottomNavigationView.ActiveIndicator</item>
+        <item name="itemBackground">@android:color/transparent</item>
+        <item name="labelVisibilityMode">labeled</item>
+        <item name="itemHorizontalTranslationEnabled">false</item>
+        <item name="elevation">8dp</item>
+        <item name="android:background">@drawable/bottom_nav_background</item>
+    </style>
+
+    <style name="Widget.SitanduApp.BottomNavigationView.ActiveIndicator" parent="Widget.Material3.BottomNavigationView.ActiveIndicator">
+        <item name="android:color">#1A53AAA7</item>
+        <item name="shapeAppearance">@style/ShapeAppearance.SitanduApp.BottomNav.ActiveIndicator</item>
+    </style>
+
+    <style name="ShapeAppearance.SitanduApp.BottomNav.ActiveIndicator" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSize">16dp</item>
+    </style>
+</resources>

@@ -1,0 +1,151 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F5F5F5"
+    android:id="@+id/scroll_view"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Profile"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:textColor="#4D4D4D"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Profile Image -->
+        <ImageView
+            android:id="@+id/img_profile"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            android:layout_gravity="center"
+            android:src="@drawable/user_profile"
+            android:layout_marginBottom="16dp" />
+
+        <!-- Profile Card -->
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="4dp"
+            app:cardUseCompatPadding="true">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="20dp"
+                android:background="#FFFFFF">
+
+                <!-- Nama Label -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Nama:"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Nama Value -->
+                <TextView
+                    android:id="@+id/txt_profile_nama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Wijayanti Dwi Astuti, S.Si., M.Sc., Ph.D."
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:lineSpacingExtra="6dp" />
+
+                <!-- Role Label (Dosen/Mahasiswa) -->
+                <TextView
+                    android:id="@+id/txt_profile_role_label"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Dosen:"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Program Studi / Info -->
+                <TextView
+                    android:id="@+id/txt_profile_info"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Teknologi Rekayasa\nInstrumentasi dan Kontrol"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:lineSpacingExtra="6dp" />
+
+                <!-- Email Label -->
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="Email:"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:textColor="#666666"
+                    android:layout_marginBottom="8dp" />
+
+                <!-- Email Value -->
+                <TextView
+                    android:id="@+id/txt_profile_email"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="user@example.com"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:lineSpacingExtra="6dp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <!-- Logout Button -->
+        <LinearLayout
+            android:id="@+id/layout_logout"
+            android:layout_width="match_parent"
+            android:layout_height="42dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/rounded"
+            android:backgroundTint="#D4183D"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:padding="12dp"
+            android:clickable="true"
+            android:focusable="true"
+            android:foreground="?android:attr/selectableItemBackground">
+
+            <ImageView
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:src="@drawable/log_out"
+                android:layout_marginEnd="8dp" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Log Out"
+                android:textColor="#FFFFFF"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

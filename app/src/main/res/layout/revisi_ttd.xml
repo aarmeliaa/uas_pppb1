@@ -1,0 +1,285 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F1F1F1"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:padding="16dp">
+
+            <ImageView
+                android:id="@+id/btn_back"
+                android:layout_width="24dp"
+                android:layout_height="24dp"
+                android:layout_marginEnd="16dp"
+                android:src="@drawable/panah_kiri"
+                android:contentDescription="Back" />
+
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:text="Detail Permintaan"
+                android:textSize="18sp"
+                android:fontFamily="@font/notosans_semi_bold"
+                android:textColor="#000000" />
+
+        </LinearLayout>
+
+        <!-- Content -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Title -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Persetujuan KRS"
+                android:textSize="24sp"
+                android:fontFamily="@font/notosans_bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="4dp" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Semester Ganjil"
+                android:textSize="24sp"
+                android:fontFamily="@font/notosans_bold"
+                android:textColor="#000000"
+                android:layout_marginBottom="24dp" />
+
+            <!-- User Info -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="16dp">
+
+                <ImageView
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_marginEnd="12dp"
+                    android:src="@drawable/user" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Jacob Louis"
+                        android:textSize="14sp"
+                        android:fontFamily="@font/notosans_regular"
+                        android:textColor="#000000"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosans_regular"
+                        android:text="24/555555/SV/22222"
+                        android:textSize="14sp"
+                        android:textColor="#000000" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <!-- Tinjau Dokumen & Unduh Dokumen -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="16dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tinjau Dokumen"
+                    android:textColor="#4D4D4D"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:layout_marginBottom="8dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_unduh_dokumen_revisi"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:text="Unduh Dokumen"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:textColor="#4D4D4D"
+                    android:textAllCaps="false"
+                    android:gravity="center"
+                    app:icon="@drawable/download"
+                    app:iconGravity="textStart"
+                    app:iconPadding="12dp"
+                    app:iconTint="#4D4D4D"
+                    app:iconSize="20dp"
+                    app:backgroundTint="#F1F1F1"
+                    app:strokeColor="#C1C1C1"
+                    app:strokeWidth="1.5dp"
+                    app:cornerRadius="20dp" />
+
+            </LinearLayout>
+
+            <!-- Alasan Revisi Section -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="24dp">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Alasan Revisi"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:textColor="#4D4D4D"
+                    android:layout_marginBottom="8dp" />
+
+                <EditText
+                    android:id="@+id/et_alasan_revisi"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+                    android:background="@drawable/alasan_background"
+                    android:hint="Ketikan Alasan..."
+                    android:gravity="top|start"
+                    android:padding="16dp"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:textColor="#000000"
+                    android:inputType="textMultiLine"
+                    android:maxLines="5" />
+
+            </LinearLayout>
+
+            <!-- Hidden Room Selection -->
+            <LinearLayout
+                android:id="@+id/layout_pilih_ruangan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Pilih Ruangan"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:textColor="#000000"
+                    android:layout_marginBottom="8dp" />
+
+                <Spinner
+                    android:id="@+id/spinner_ruangan"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:background="@drawable/spinner_background"
+                    android:paddingStart="16dp"
+                    android:paddingEnd="16dp"
+                    android:layout_marginBottom="24dp" />
+
+            </LinearLayout>
+
+            <!-- Action Buttons -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center">
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_batal_revisi_ttd"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Batal"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:textColor="#4D4D4D"
+                    android:textAllCaps="false"
+                    app:backgroundTint="#F1F1F1"
+                    app:strokeColor="#C1C1C1"
+                    app:strokeWidth="1.5dp"
+                    app:cornerRadius="24dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_kirim_revisi_ttd"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:text="Kirim Revisi"
+                    android:textSize="14sp"
+                    android:textColor="#FFFFFF"
+                    android:textAllCaps="false"
+                    app:backgroundTint="#53AAA7"
+                    app:cornerRadius="24dp" />
+
+                <!-- Hidden Buttons -->
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_batal"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginEnd="8dp"
+                    android:text="Batal"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:textColor="#4D4D4D"
+                    android:textAllCaps="false"
+                    android:visibility="gone"
+                    app:backgroundTint="#FFFFFF"
+                    app:strokeColor="#C1C1C1"
+                    app:strokeWidth="1.5dp"
+                    app:cornerRadius="24dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btn_konfirmasi"
+                    android:layout_width="0dp"
+                    android:layout_height="48dp"
+                    android:layout_weight="1"
+                    android:layout_marginStart="8dp"
+                    android:fontFamily="@font/notosans_regular"
+                    android:text="Konfirmasi"
+                    android:textSize="14sp"
+                    android:textColor="#FFFFFF"
+                    android:textAllCaps="false"
+                    android:visibility="gone"
+                    app:backgroundTint="#53AAA7"
+                    app:cornerRadius="24dp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

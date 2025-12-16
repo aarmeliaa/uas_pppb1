@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/dashboardFragment"
+        android:icon="@drawable/home"
+        android:title="Dashboard"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/ttdFragment"
+        android:icon="@drawable/tandatangan"
+        android:title="Tanda Tangan"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/jtFragment"
+        android:icon="@drawable/janjitemu"
+        android:title="Janji Temu"
+        app:showAsAction="ifRoom" />
+
+
+    <item
+        android:id="@+id/jadwalFragment"
+        android:icon="@drawable/jadwal"
+        android:title="Jadwal"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/profileFragment"
+        android:icon="@drawable/profile"
+        android:title="Profile"
+        app:showAsAction="ifRoom" />
+
+</menu>

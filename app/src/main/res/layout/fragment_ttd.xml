@@ -1,0 +1,421 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp"
+    android:background="#F1F1F1"
+    android:id="@+id/scroll_view"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Header -->
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tanda Tangan"
+            android:textSize="24sp"
+            android:fontFamily="@font/notosans_bold"
+            android:textColor="#4D4D4D"
+            android:layout_marginBottom="24dp" />
+
+        <!-- Dropdown Section -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginBottom="12dp">
+
+            <!-- Dropdown Header -->
+            <LinearLayout
+                android:id="@+id/dropdown_header"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/roundededittext"
+                android:backgroundTint="#BEE5E3"
+                android:padding="16dp"
+                android:clickable="true"
+                android:focusable="true">
+
+                <TextView
+                    android:id="@+id/dropdown_text"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Terbaru"
+                    android:textSize="18sp"
+                    android:fontFamily="@font/notosans_semi_bold"
+                    android:textColor="#4D4D4D" />
+
+                <ImageView
+                    android:id="@+id/dropdown_arrow"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:src="@drawable/panah_bawah"
+                    android:layout_gravity="center_vertical" />
+
+            </LinearLayout>
+
+            <!-- Dropdown Options -->
+            <LinearLayout
+                android:id="@+id/dropdown_options"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/roundededittext"
+                android:backgroundTint="#FFFFFF"
+                android:visibility="gone"
+                android:elevation="4dp">
+
+                <!-- Option Terbaru -->
+                <TextView
+                    android:id="@+id/option_terbaru"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Terbaru"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:padding="16dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+                <!-- Option Terlama -->
+                <TextView
+                    android:id="@+id/option_terlama"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Terlama"
+                    android:textSize="16sp"
+                    android:textColor="#333333"
+                    android:padding="16dp"
+                    android:background="?android:attr/selectableItemBackground"
+                    android:clickable="true"
+                    android:focusable="true" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+        <!-- Grid 2 Kolom -->
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:columnCount="2"
+            android:rowCount="2"
+            android:alignmentMode="alignMargins"
+            android:columnOrderPreserved="false"
+            android:rowOrderPreserved="false">
+
+            <!-- Card 1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_columnWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="#FFFFFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:src="@drawable/dokumen"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:text="Persetujuan KRS"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/notosans_semi_bold"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:text="Semester Ganjil"
+                        android:fontFamily="@font/notosans_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="2dp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:layout_marginEnd="4dp"
+                        android:src="@drawable/user" />
+                    <TextView
+                        android:text="Jacob Louis"
+                        android:fontFamily="@font/notosans_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:text="24/555555/sv/22222"
+                        android:fontFamily="@font/notosans_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="12dp" />
+
+                    <Button
+                        android:id="@+id/button_tinjau_ttd_1"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:text="Tinjau"
+                        android:textSize="13sp"
+                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#53AAA7"
+                        android:drawableLeft="@drawable/eye"
+                        android:gravity="center" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card 2 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_columnWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="#FFFFFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:src="@drawable/dokumen"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:text="Persetujuan KRS"
+                        android:fontFamily="@font/notosans_semi_bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:text="Semester Ganjil"
+                        android:fontFamily="@font/notosans_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="2dp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:layout_marginEnd="4dp"
+                        android:src="@drawable/user" />
+                    <TextView
+                        android:text="Jacob Louis"
+                        android:fontFamily="@font/notosans_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:text="24/555555/sv/22222"
+                        android:fontFamily="@font/notosans_regular"
+                        android:textSize="13sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="12dp" />
+
+                    <Button
+                        android:id="@+id/button_tinjau_ttd_2"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:text="Tinjau"
+                        android:textSize="13sp"
+                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#53AAA7"
+                        android:drawableLeft="@drawable/eye"
+                        android:gravity="center" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card 1 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_columnWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="#FFFFFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:src="@drawable/dokumen"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:text="Persetujuan KRS"
+                        android:fontFamily="@font/notosans_semi_bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:text="Semester Ganjil"
+                        android:fontFamily="@font/notosans_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="2dp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:layout_marginEnd="4dp"
+                        android:src="@drawable/user" />
+                    <TextView
+                        android:text="Jacob Louis"
+                        android:fontFamily="@font/notosans_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:text="24/555555/sv/22222"
+                        android:fontFamily="@font/notosans_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="12dp" />
+
+                    <Button
+                        android:id="@+id/button_tinjau_ttd_3"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:text="Tinjau"
+                        android:textSize="13sp"
+                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#53AAA7"
+                        android:drawableLeft="@drawable/eye"
+                        android:gravity="center" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <!-- Card 2 -->
+            <androidx.cardview.widget.CardView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_margin="6dp"
+                android:layout_columnWeight="1"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:padding="16dp"
+                    android:background="#FFFFFF"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:src="@drawable/dokumen"
+                        android:layout_marginBottom="8dp" />
+
+                    <TextView
+                        android:text="Persetujuan KRS"
+                        android:fontFamily="@font/notosans_semi_bold"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:textColor="#333333"
+                        android:textSize="15sp"
+                        android:layout_marginBottom="4dp" />
+
+                    <TextView
+                        android:text="Semester Ganjil"
+                        android:fontFamily="@font/notosans_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="2dp" />
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="33dp"
+                        android:layout_marginEnd="4dp"
+                        android:src="@drawable/user" />
+                    <TextView
+                        android:text="Jacob Louis"
+                        android:fontFamily="@font/notosans_regular"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="13sp"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="2dp" />
+
+                    <TextView
+                        android:text="24/555555/sv/22222"
+                        android:fontFamily="@font/notosans_regular"
+                        android:textSize="13sp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textColor="#666666"
+                        android:layout_marginBottom="12dp" />
+
+                    <Button
+                        android:id="@+id/button_tinjau_ttd_4"
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:text="Tinjau"
+                        android:textSize="13sp"
+                        android:textColor="#FFFFFF"
+                        android:backgroundTint="#53AAA7"
+                        android:drawableLeft="@drawable/eye"
+                        android:gravity="center" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </GridLayout>
+
+    </LinearLayout>
+</ScrollView>
