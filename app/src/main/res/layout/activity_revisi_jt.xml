@@ -23,18 +23,16 @@
                 android:layout_width="24dp"
                 android:layout_height="24dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/panah_kiri"
-                android:contentDescription="Back" />
+                android:src="@drawable/panah_kiri" />
 
             <TextView
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="Detail Permintaan"
+                android:text="Jadwal Ulang"
                 android:textSize="18sp"
                 android:fontFamily="@font/notosans_semi_bold"
                 android:textColor="#000000" />
-
         </LinearLayout>
 
         <LinearLayout
@@ -44,7 +42,7 @@
             android:padding="16dp">
 
             <TextView
-                android:id="@+id/tv_judul_jt_detail"
+                android:id="@+id/tv_judul_revisi_jt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Bimbingan"
@@ -54,7 +52,7 @@
                 android:layout_marginBottom="4dp" />
 
             <TextView
-                android:id="@+id/tv_sub_judul_jt_detail"
+                android:id="@+id/tv_sub_judul_revisi_jt"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tugas Akhir"
@@ -83,26 +81,24 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_nama_mhs_jt"
+                        android:id="@+id/tv_nama_revisi_jt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Jacob Louis"
                         android:textSize="14sp"
                         android:fontFamily="@font/notosans_regular"
-                        android:textColor="#4D4D4D"
+                        android:textColor="#000000"
                         android:layout_marginBottom="2dp" />
 
                     <TextView
-                        android:id="@+id/tv_nim_mhs_jt"
+                        android:id="@+id/tv_nim_revisi_jt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/notosans_regular"
                         android:text="24/555555/SV/22222"
                         android:textSize="14sp"
-                        android:textColor="#4D4D4D" />
-
+                        android:textColor="#000000" />
                 </LinearLayout>
-
             </LinearLayout>
 
             <LinearLayout
@@ -125,7 +121,7 @@
                     android:orientation="vertical">
 
                     <TextView
-                        android:id="@+id/tv_tanggal_jt"
+                        android:id="@+id/tv_tanggal_revisi_jt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Senin, 13 Oktober 2025"
@@ -135,46 +131,39 @@
                         android:layout_marginBottom="2dp" />
 
                     <TextView
-                        android:id="@+id/tv_jam_jt"
+                        android:id="@+id/tv_jam_revisi_jt"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="10.00 - 11.00"
                         android:fontFamily="@font/notosans_regular"
                         android:textSize="14sp"
                         android:textColor="#4D4D4D" />
-
                 </LinearLayout>
-
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/layout_pilih_ruangan"
+            <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:visibility="gone">
+                android:text="Catatan / Alasan Jadwal Ulang"
+                android:textSize="14sp"
+                android:fontFamily="@font/notosans_regular"
+                android:textColor="#4D4D4D"
+                android:layout_marginBottom="8dp" />
 
-                <TextView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="Pilih Ruangan"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/notosans_regular"
-                    android:textColor="#000000"
-                    android:layout_marginBottom="8dp" />
+            <EditText
+                android:id="@+id/et_catatan_jt"
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@drawable/alasan_background"
+                android:hint="Contoh: Saya ada rapat mendadak, tolong ajukan di hari Rabu."
+                android:gravity="top|start"
+                android:padding="16dp"
+                android:textSize="14sp"
+                android:fontFamily="@font/notosans_regular"
+                android:textColor="#000000"
+                android:inputType="textMultiLine"
+                android:layout_marginBottom="24dp" />
 
-                <Spinner
-                    android:id="@+id/spinner_ruangan"
-                    android:layout_width="match_parent"
-                    android:layout_height="48dp"
-                    android:background="@drawable/spinner_background"
-                    android:paddingStart="16dp"
-                    android:paddingEnd="16dp"
-                    android:layout_marginBottom="24dp" />
-
-            </LinearLayout>
-
-            <!-- Action Buttons -->
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -182,38 +171,7 @@
                 android:gravity="center">
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_setuju"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:layout_marginEnd="8dp"
-                    android:fontFamily="@font/notosans_regular"
-                    android:text="Setujui"
-                    android:textSize="14sp"
-                    android:textColor="#FFFFFF"
-                    android:textAllCaps="false"
-                    app:backgroundTint="#53AAA7"
-                    app:cornerRadius="24dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_jadwal_ulang"
-                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-                    android:layout_width="0dp"
-                    android:layout_height="48dp"
-                    android:layout_weight="1"
-                    android:layout_marginStart="8dp"
-                    android:text="Jadwal Ulang"
-                    android:textSize="14sp"
-                    android:fontFamily="@font/notosans_regular"
-                    android:textColor="#4D4D4D"
-                    android:textAllCaps="false"
-                    app:backgroundTint="#F1F1F1"
-                    app:strokeColor="#C1C1C1"
-                    app:strokeWidth="1.5dp"
-                    app:cornerRadius="24dp" />
-
-                <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_batal"
+                    android:id="@+id/btn_batal_jt"
                     style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
@@ -224,31 +182,26 @@
                     android:fontFamily="@font/notosans_regular"
                     android:textColor="#4D4D4D"
                     android:textAllCaps="false"
-                    android:visibility="gone"
-                    app:backgroundTint="#FFFFFF"
+                    app:backgroundTint="#F1F1F1"
                     app:strokeColor="#C1C1C1"
                     app:strokeWidth="1.5dp"
                     app:cornerRadius="24dp" />
 
                 <com.google.android.material.button.MaterialButton
-                    android:id="@+id/btn_konfirmasi"
+                    android:id="@+id/btn_kirim_jt"
                     android:layout_width="0dp"
                     android:layout_height="48dp"
                     android:layout_weight="1"
                     android:layout_marginStart="8dp"
                     android:fontFamily="@font/notosans_regular"
-                    android:text="Konfirmasi"
+                    android:text="Kirim"
                     android:textSize="14sp"
                     android:textColor="#FFFFFF"
                     android:textAllCaps="false"
-                    android:visibility="gone"
                     app:backgroundTint="#53AAA7"
                     app:cornerRadius="24dp" />
-
             </LinearLayout>
 
         </LinearLayout>
-
     </LinearLayout>
-
 </ScrollView>

@@ -74,6 +74,11 @@
             android:exported="false"
             android:theme="@style/Theme.SitanduApp" />
 
+        <activity
+            android:name=".RevisiJtActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SitanduApp" />
+
         <!-- Tambahkan provider untuk FileProvider -->
         <provider
             android:name="androidx.core.content.FileProvider"
