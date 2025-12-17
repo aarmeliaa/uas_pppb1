@@ -5,7 +5,17 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
+import com.example.sitanduapp.adapter.JadwalAdapter
+import com.example.sitanduapp.database.AppDatabase
+import com.example.sitanduapp.database.HistoryEntity
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 import java.text.SimpleDateFormat
 import java.util.*
 
@@ -16,6 +26,9 @@ class JadwalFragment : Fragment() {
     private lateinit var dropdownOptions: View
     private lateinit var optionTerbaru: android.widget.TextView
     private lateinit var optionTerlama: android.widget.TextView
+    private lateinit var rvJadwal: RecyclerView
+    private lateinit var adapter: JadwalAdapter
+    private var allDataHistory: List<HistoryEntity> = emptyList() // Simpan semua data di sini
 
     private val calendar = Calendar.getInstance()
     private val dateFormat = SimpleDateFormat("EEEE, dd MMMM yyyy", Locale("id", "ID"))
@@ -27,48 +40,78 @@ class JadwalFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_jadwal, container, false)
 
-        // Initialize views
         dropdownText = view.findViewById(R.id.dropdown_text)
         dropdownArrow = view.findViewById(R.id.dropdown_arrow)
         dropdownOptions = view.findViewById(R.id.dropdown_options)
         optionTerbaru = view.findViewById(R.id.option_terbaru)
         optionTerlama = view.findViewById(R.id.option_terlama)
+        rvJadwal = view.findViewById(R.id.rv_jadwal)
+        rvJadwal.layoutManager = LinearLayoutManager(context)
+        adapter = JadwalAdapter(emptyList())
+        rvJadwal.adapter = adapter
 
-        // Setup dropdown functionality
         setupDropdown(view)
 
+        loadDataFromRoom()
+
         return view
+    }
+
+    private fun loadDataFromRoom() {
+        lifecycleScope.launch(Dispatchers.IO) {
+            try {
+                val db = AppDatabase.getDatabase(requireContext())
+                val rawData = db.historyDao().getAllHistory()
+
+                allDataHistory = rawData.filter { it.tipe == "jt" }
+
+                withContext(Dispatchers.Main) {
+                    adapter.updateData(allDataHistory)
+
+                    if (allDataHistory.isEmpty()) {
+                        Toast.makeText(context, "Belum ada jadwal yang disetujui", Toast.LENGTH_SHORT).show()
+                    }
+                }
+            } catch (e: Exception) {
+                withContext(Dispatchers.Main) {
+                    e.printStackTrace()
+                    Toast.makeText(context, "Error DB: ${e.message}", Toast.LENGTH_SHORT).show()
+                }
+            }
+        }
     }
 
     private fun setupDropdown(view: View) {
         val dropdownHeader = view.findViewById<View>(R.id.dropdown_header)
 
-        // Set initial date to today
-        updateDateText(calendar.time)
-
-        // Setup dropdown header click listener
         dropdownHeader.setOnClickListener {
-            showDatePickerDialog()
+            if (dropdownOptions.visibility == View.VISIBLE) {
+                dropdownOptions.visibility = View.GONE
+                dropdownArrow.animate().rotation(0f).start()
+            } else {
+                dropdownOptions.visibility = View.VISIBLE
+                dropdownArrow.animate().rotation(180f).start()
+            }
         }
 
-        // Setup dropdown options click listeners
         optionTerbaru.setOnClickListener {
             dropdownText.text = "Terbaru"
             dropdownOptions.visibility = View.GONE
             dropdownArrow.rotation = 0f
-            // TODO: Sort data by newest
-            // Filter jadwal berdasarkan tanggal terbaru
+
+            val sorted = allDataHistory.sortedByDescending { it.id }
+            adapter.updateData(sorted)
         }
 
         optionTerlama.setOnClickListener {
             dropdownText.text = "Terlama"
             dropdownOptions.visibility = View.GONE
             dropdownArrow.rotation = 0f
-            // TODO: Sort data by oldest
-            // Filter jadwal berdasarkan tanggal terlama
+
+            val sorted = allDataHistory.sortedBy { it.id }
+            adapter.updateData(sorted)
         }
 
-        // Kalender icon click listener (alternatif: bisa juga membuka date picker)
         dropdownArrow.setOnClickListener {
             showDatePickerDialog()
         }
@@ -82,62 +125,25 @@ class JadwalFragment : Fragment() {
         val datePickerDialog = DatePickerDialog(
             requireContext(),
             { _, selectedYear, selectedMonth, selectedDay ->
-                // Update calendar dengan tanggal yang dipilih
                 calendar.set(selectedYear, selectedMonth, selectedDay)
-                updateDateText(calendar.time)
+                val selectedDateStr = dateFormat.format(calendar.time)
 
-                // TODO: Filter atau refresh data jadwal berdasarkan tanggal yang dipilih
-                loadJadwalForDate(calendar.time)
+                dropdownText.text = selectedDateStr
+
+                val filteredList = allDataHistory.filter {
+                    it.tanggal.contains(selectedDateStr, ignoreCase = true)
+                }
+
+                adapter.updateData(filteredList)
+
+                if (filteredList.isEmpty()) {
+                    Toast.makeText(context, "Tidak ada jadwal pada tanggal ini", Toast.LENGTH_SHORT).show()
+                }
             },
             year,
             month,
             day
         )
-
-        // Optional: Set min date jika diperlukan
-        // datePickerDialog.datePicker.minDate = System.currentTimeMillis()
-
-        // Optional: Set max date jika diperlukan
-        // val maxDate = Calendar.getInstance()
-        // maxDate.add(Calendar.MONTH, 3)
-        // datePickerDialog.datePicker.maxDate = maxDate.timeInMillis
-
         datePickerDialog.show()
-    }
-
-    private fun updateDateText(date: Date) {
-        val formattedDate = dateFormat.format(date)
-        dropdownText.text = formattedDate
-    }
-
-    private fun loadJadwalForDate(date: Date) {
-        // TODO: Implementasi loading jadwal berdasarkan tanggal
-        // Contoh: Panggil API atau filter dari database lokal
-
-        // Untuk sementara, tampilkan toast
-        android.widget.Toast.makeText(
-            requireContext(),
-            "Memuat jadwal untuk ${dateFormat.format(date)}",
-            android.widget.Toast.LENGTH_SHORT
-        ).show()
-
-        // Contoh filter data:
-        // 1. Jika data jadwal sudah ada di local
-        // 2. Filter berdasarkan tanggal yang dipilih
-        // 3. Update UI dengan data yang sudah difilter
-    }
-
-    // Helper function untuk mendapatkan nama hari dalam bahasa Indonesia
-    private fun getIndonesianDayName(dayOfWeek: Int): String {
-        return when (dayOfWeek) {
-            Calendar.SUNDAY -> "Minggu"
-            Calendar.MONDAY -> "Senin"
-            Calendar.TUESDAY -> "Selasa"
-            Calendar.WEDNESDAY -> "Rabu"
-            Calendar.THURSDAY -> "Kamis"
-            Calendar.FRIDAY -> "Jumat"
-            Calendar.SATURDAY -> "Sabtu"
-            else -> ""
-        }
     }
 }
