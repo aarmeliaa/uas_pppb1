@@ -9,7 +9,11 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope // IMPORT PENTING 1
+import kotlinx.coroutines.launch     // IMPORT PENTING 2
 import com.example.sitanduapp.api.Request
+import com.example.sitanduapp.database.AppDatabase  // IMPORT PENTING 3
+import com.example.sitanduapp.database.HistoryEntity // IMPORT PENTING 4
 import com.google.android.material.button.MaterialButton
 
 class SetujuiTtdActivity : AppCompatActivity() {
@@ -56,8 +60,9 @@ class SetujuiTtdActivity : AppCompatActivity() {
                 fileUri = data?.data
 
                 if (fileUri != null) {
-                    val path = fileUri?.path ?: "Dokumen.pdf"
-                    btnUpload.text = "File Terpilih: ${path.substringAfterLast("/")}"
+                    val path = fileUri?.path ?: "Dokumen_ACC.pdf"
+                    val fileName = path.substringAfterLast("/")
+                    btnUpload.text = "File: $fileName"
                     btnUpload.setIconResource(R.drawable.dokumen)
                 }
             }
@@ -69,18 +74,31 @@ class SetujuiTtdActivity : AppCompatActivity() {
             pickFileLauncher.launch(intent)
         }
 
-        // LOGIC KIRIM
+        // --- LOGIC KIRIM & SIMPAN KE ROOM ---
         btnKirim.setOnClickListener {
             if (fileUri == null) {
                 Toast.makeText(this, "Harap unggah dokumen yang sudah ditandatangani!", Toast.LENGTH_SHORT).show()
             } else {
-                // nanti akan diupdate logic integrasi dengan Room
-                Toast.makeText(this, "Berhasil menyetujui dokumen!", Toast.LENGTH_LONG).show()
 
-                val intent = Intent(this, DashboardActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-                finish()
+                val historyBaru = HistoryEntity(
+                    nama = dataRequest?.nama ?: "Mahasiswa",
+                    judul = dataRequest?.judul ?: "Dokumen TTD",
+                    tipe = "ttd",
+                    tanggal = dataRequest?.tanggal ?: "-",
+                    status = "Disetujui"
+                )
+
+                lifecycleScope.launch {
+                    val database = AppDatabase.getDatabase(this@SetujuiTtdActivity)
+                    database.historyDao().insert(historyBaru)
+
+                    Toast.makeText(this@SetujuiTtdActivity, "Berhasil menyetujui & Disimpan Offline!", Toast.LENGTH_LONG).show()
+
+                    val intent = Intent(this@SetujuiTtdActivity, DashboardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
     }

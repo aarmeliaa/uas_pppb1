@@ -7,7 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope // IMPORT WAJIB 1
+import kotlinx.coroutines.launch     // IMPORT WAJIB 2
 import com.example.sitanduapp.api.Request
+import com.example.sitanduapp.database.AppDatabase  // IMPORT WAJIB 3
+import com.example.sitanduapp.database.HistoryEntity // IMPORT WAJIB 4
 import com.google.android.material.button.MaterialButton
 
 class RevisiTtdActivity : AppCompatActivity() {
@@ -44,7 +48,6 @@ class RevisiTtdActivity : AppCompatActivity() {
             Toast.makeText(this, "Mengunduh dokumen untuk dicek...", Toast.LENGTH_SHORT).show()
         }
 
-        // LOGIC KIRIM REVISI
         btnKirim.setOnClickListener {
             val alasan = etAlasan.text.toString().trim()
 
@@ -52,13 +55,26 @@ class RevisiTtdActivity : AppCompatActivity() {
                 etAlasan.error = "Alasan revisi wajib diisi!"
                 Toast.makeText(this, "Mohon isi alasan revisi", Toast.LENGTH_SHORT).show()
             } else {
-                // nanti akan diupdate logic integrasi dengan Room
-                Toast.makeText(this, "Revisi berhasil dikirim ke mahasiswa!", Toast.LENGTH_LONG).show()
 
-                val intent = Intent(this, DashboardActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-                finish()
+                val historyBaru = HistoryEntity(
+                    nama = dataRequest?.nama ?: "Mahasiswa",
+                    judul = dataRequest?.judul ?: "Dokumen TTD",
+                    tipe = "ttd",
+                    tanggal = dataRequest?.tanggal ?: "-",
+                    status = "Revisi: $alasan"
+                )
+
+                lifecycleScope.launch {
+                    val db = AppDatabase.getDatabase(this@RevisiTtdActivity)
+                    db.historyDao().insert(historyBaru)
+
+                    Toast.makeText(this@RevisiTtdActivity, "Revisi terkirim & Disimpan Offline!", Toast.LENGTH_LONG).show()
+
+                    val intent = Intent(this@RevisiTtdActivity, DashboardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
     }

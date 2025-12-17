@@ -7,7 +7,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.lifecycleScope // IMPORT WAJIB 1
+import kotlinx.coroutines.launch     // IMPORT WAJIB 2
 import com.example.sitanduapp.api.Request
+import com.example.sitanduapp.database.AppDatabase  // IMPORT WAJIB 3
+import com.example.sitanduapp.database.HistoryEntity // IMPORT WAJIB 4
 import com.google.android.material.button.MaterialButton
 
 class RevisiJtActivity : AppCompatActivity() {
@@ -47,13 +51,26 @@ class RevisiJtActivity : AppCompatActivity() {
                 etCatatan.error = "Mohon isi alasan jadwal ulang"
                 Toast.makeText(this, "Catatan tidak boleh kosong", Toast.LENGTH_SHORT).show()
             } else {
-                // nanti akan diupdate logic integrasi dengan Room
-                Toast.makeText(this, "Permintaan jadwal ulang dikirim!", Toast.LENGTH_LONG).show()
 
-                val intent = Intent(this, DashboardActivity::class.java)
-                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
-                startActivity(intent)
-                finish()
+                val historyBaru = HistoryEntity(
+                    nama = dataRequest?.nama ?: "Mahasiswa",
+                    judul = dataRequest?.judul ?: "Janji Temu",
+                    tipe = "jt",
+                    tanggal = dataRequest?.tanggal ?: "-",
+                    status = "Reschedule: $catatan"
+                )
+
+                lifecycleScope.launch {
+                    val db = AppDatabase.getDatabase(this@RevisiJtActivity)
+                    db.historyDao().insert(historyBaru)
+
+                    Toast.makeText(this@RevisiJtActivity, "Jadwal Ulang Terkirim & Disimpan!", Toast.LENGTH_LONG).show()
+
+                    val intent = Intent(this@RevisiJtActivity, DashboardActivity::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                    startActivity(intent)
+                    finish()
+                }
             }
         }
     }
