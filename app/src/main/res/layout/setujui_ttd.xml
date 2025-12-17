@@ -47,6 +47,7 @@
 
             <!-- Title -->
             <TextView
+                android:id="@+id/tv_judul_setujui"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Persetujuan KRS"
@@ -56,6 +57,7 @@
                 android:layout_marginBottom="4dp" />
 
             <TextView
+                android:id="@+id/tv_sub_judul_setujui"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Semester Ganjil"
@@ -85,6 +87,7 @@
                     android:orientation="vertical">
 
                     <TextView
+                        android:id="@+id/tv_nama_setujui"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="Jacob Louis"
@@ -94,6 +97,7 @@
                         android:layout_marginBottom="2dp" />
 
                     <TextView
+                        android:id="@+id/tv_nim_setujui"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/notosans_regular"

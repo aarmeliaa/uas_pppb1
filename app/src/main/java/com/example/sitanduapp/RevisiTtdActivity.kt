@@ -2,12 +2,12 @@ package com.example.sitanduapp
 
 import android.content.Intent
 import android.os.Bundle
-import android.os.Handler
-import android.os.Looper
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import com.example.sitanduapp.api.Request
 import com.google.android.material.button.MaterialButton
 
 class RevisiTtdActivity : AppCompatActivity() {
@@ -16,62 +16,50 @@ class RevisiTtdActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.revisi_ttd)
 
+        val dataRequest = if (android.os.Build.VERSION.SDK_INT >= 33) {
+            intent.getParcelableExtra("EXTRA_REQUEST", Request::class.java)
+        } else {
+            @Suppress("DEPRECATION")
+            intent.getParcelableExtra("EXTRA_REQUEST")
+        }
+
+        if (dataRequest != null) {
+            findViewById<TextView>(R.id.tv_judul_revisi).text = dataRequest.judul
+            findViewById<TextView>(R.id.tv_sub_judul_revisi).text = dataRequest.keterangan
+            findViewById<TextView>(R.id.tv_nama_revisi).text = dataRequest.nama
+            findViewById<TextView>(R.id.tv_nim_revisi).text = dataRequest.nim
+        }
+
         val btnBack: ImageView = findViewById(R.id.btn_back)
-        val btnBatal: MaterialButton = findViewById(R.id.btn_batal_revisi_ttd)
-        val btnKirim: MaterialButton = findViewById(R.id.btn_kirim_revisi_ttd)
         val btnUnduh: MaterialButton = findViewById(R.id.btn_unduh_dokumen_revisi)
         val etAlasan: EditText = findViewById(R.id.et_alasan_revisi)
+        val btnKirim: MaterialButton = findViewById(R.id.btn_kirim_revisi_ttd)
+        val btnBatal: MaterialButton = findViewById(R.id.btn_batal_revisi_ttd)
 
-        btnBack.setOnClickListener {
-            onBackPressed()
+        btnBack.setOnClickListener { finish() }
+        btnBatal.setOnClickListener { finish() }
+
+        // LOGIC UNDUH (palsu...)
+        btnUnduh.setOnClickListener {
+            Toast.makeText(this, "Mengunduh dokumen untuk dicek...", Toast.LENGTH_SHORT).show()
         }
 
-        btnBatal.setOnClickListener {
-            finish()
-        }
-
+        // LOGIC KIRIM REVISI
         btnKirim.setOnClickListener {
             val alasan = etAlasan.text.toString().trim()
 
             if (alasan.isEmpty()) {
-                Toast.makeText(this, "Harap isi alasan revisi", Toast.LENGTH_SHORT).show()
-                etAlasan.requestFocus()
+                etAlasan.error = "Alasan revisi wajib diisi!"
+                Toast.makeText(this, "Mohon isi alasan revisi", Toast.LENGTH_SHORT).show()
             } else {
-                // Disable tombol kirim sementara
-                btnKirim.isEnabled = false
-                btnKirim.text = "Mengirim..."
+                // nanti akan diupdate logic integrasi dengan Room
+                Toast.makeText(this, "Revisi berhasil dikirim ke mahasiswa!", Toast.LENGTH_LONG).show()
 
-                // Tampilkan loading
-                Toast.makeText(this, "Mengirim revisi...", Toast.LENGTH_SHORT).show()
-
-                // Simulasi proses pengiriman
-                Handler(Looper.getMainLooper()).postDelayed({
-                    // Setelah "pengiriman" selesai, navigasi ke dashboard
-                    navigateToDashboard(alasan)
-                }, 1500) // Simulasi 1.5 detik
+                val intent = Intent(this, DashboardActivity::class.java)
+                intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TOP or Intent.FLAG_ACTIVITY_NEW_TASK
+                startActivity(intent)
+                finish()
             }
         }
-
-        btnUnduh.setOnClickListener {
-            Toast.makeText(this, "Mengunduh dokumen...", Toast.LENGTH_SHORT).show()
-            Toast.makeText(this, "Dokumen berhasil diunduh", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun navigateToDashboard(alasan: String) {
-        // Buat intent untuk DashboardActivity
-        val intent = Intent(this, DashboardActivity::class.java).apply {
-            // Hapus semua activity di stack dan buat dashboard sebagai root baru
-            flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-
-            // Opsional: Tambahkan extra data jika diperlukan
-            putExtra("show_success_message", true)
-            putExtra("message", "Revisi berhasil dikirim!")
-            putExtra("alasan_revisi", alasan)
-        }
-
-        // Navigasi ke dashboard
-        startActivity(intent)
-        finish() // Tutup activity ini
     }
 }
