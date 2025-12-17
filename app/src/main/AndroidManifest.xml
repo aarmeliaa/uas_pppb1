@@ -7,6 +7,8 @@
     <!-- Untuk Android 10+ (API 29+), kita gunakan requestLegacyExternalStorage jika target SDK < 30 -->
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
         android:maxSdkVersion="28" />
+    <!-- Akses internet -->
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
